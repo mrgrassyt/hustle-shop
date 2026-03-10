@@ -25,8 +25,8 @@ def index():
             <p style="color:#00ff41; font-weight:bold;">€{p['price']}.00</p>
             <a href="https://wa.me/37124502113?text=Hi!%20I%20am%20interested%20in%20the%20{p['name']}" 
                target="_blank" 
-               style="background:#00ff41; color:black; padding:8px; text-decoration:none; display:block; border-radius:5px; font-weight:bold;">
-               CONTACT ON WHATSAPP
+               style="background:#00ff41; color:black; padding:10px; text-decoration:none; display:block; border-radius:5px; font-weight:bold;">
+               BUY
             </a>
         </div>
         """
@@ -36,3 +36,18 @@ def index():
     <head><title>Gustavs' Hardware Shop</title></head>
     <body style="background:#0a0a0a; color:white; font-family:sans-serif; text-align:center; padding:20px;">
         <h1 style="color:#00ff41;">GUSTAVS' HARDWARE SHOP</h1>
+        <div style="background:#222; width:80%; margin: 20px auto; padding:15px; border-radius:10px;">
+            <p>Hustle Progress: €{stats['cash']} / €{stats['goal']}</p>
+            <div style="background:#444; width:100%; height:20px; border-radius:10px; overflow:hidden;">
+                <div style="background:#00ff41; width:{progress}%; height:100%;"></div>
+            </div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">{items_html}</div>
+    </body>
+    </html>
+    """
+
+if __name__ == '__main__':
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
