@@ -97,3 +97,11 @@ if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+<div style="margin-bottom: 20px; padding: 10px; background: #1a1a1a; border-bottom: 1px solid #333; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+    <a href="#" style="color: #00ff41; text-decoration: none; font-size: 14px; font-weight: bold;">CPU</a>
+    <a href="#" style="color: #00ff41; text-decoration: none; font-size: 14px; font-weight: bold;">GPU</a>
+    <a href="#" style="color: #00ff41; text-decoration: none; font-size: 14px; font-weight: bold;">PSU</a>
+    <a href="#" style="color: #00ff41; text-decoration: none; font-size: 14px; font-weight: bold;">MOBO</a>
+    <a href="#" style="color: #00ff41; text-decoration: none; font-size: 14px; font-weight: bold;">RAM</a>
+    <a href="#" style="color: #00ff41; text-decoration: none; font-size: 14px; font-weight: bold;">CASE</a>
+</div>
