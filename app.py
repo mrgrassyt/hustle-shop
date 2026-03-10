@@ -27,8 +27,8 @@ def index():
             
             <div id="contact-{p['id']}" style="display:none; margin-top:10px; background:#222; border-radius:5px; padding:5px;">
                 <a href="https://wa.me/37124502113" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">💬 WhatsApp</a>
-                <a href="INSERT_FACEBOOK_LINK" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">👤 Facebook</a>
-                <a href="INSERT_DISCORD_LINK" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">🎮 Discord</a>
+                <a href="https://www.facebook.com/groups/1751511929170766/" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">👤 Facebook</a>
+                <a href="https://discord.gg/SQY8pRtUdh" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">🎮 Discord</a>
             </div>
         </div>
         """
@@ -65,3 +65,4 @@ if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
