@@ -22,7 +22,8 @@ def index():
             <img src="{p['img']}" style="width:100%; height:120px; object-fit:contain;">
             <h3 style="font-size:16px;">{p['name']}</h3>
             <p style="color:#00ff41; font-weight:bold;">€{p['price']}.00</p>
-            <a href="/buy/{p['price']}" style="background:#00ff41; color:black; padding:8px; text-decoration:none; display:block; border-radius:5px; font-weight:bold;">BUY NOW</a>
+            <p style="color:#00ff41; font-weight:bold;">€{p['price']}.00</p>
+            <a href="https://wa.me/37124502113" target="_blank" style="background:#00ff41; color:black; padding:8px; text-decoration:none; display:block; border-radius:5px; font-weight:bold;">CONTACT ON WHATSAPP</a>
         </div>
         """
 
@@ -50,3 +51,4 @@ if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
