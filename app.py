@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask
 
 app = Flask(__name__)
 
@@ -9,7 +9,6 @@ products = [
     {"id": 2, "name": "GA-970A-UD3P", "price": 39, "img": "https://static.gigabyte.com/StaticFile/Image/Global/99861611681f2157143093282f6e9b46/Product/10041/png/1000"}
 ]
 
-# Set your current cash here manually whenever you sell something!
 stats = {"cash": 0, "goal": 250}
 
 @app.route('/')
@@ -19,26 +18,41 @@ def index():
     items_html = ""
     for p in products:
         items_html += f"""
-        <div style="background:#1a1a1a; border:1px solid #333; padding:15px; width:200px; border-radius:10px;">
+        <div style="background:#1a1a1a; border:1px solid #333; padding:15px; width:200px; border-radius:10px; position:relative;">
             <img src="{p['img']}" style="width:100%; height:120px; object-fit:contain;">
             <h3 style="font-size:16px;">{p['name']}</h3>
             <p style="color:#00ff41; font-weight:bold;">€{p['price']}.00</p>
-            <a href="https://wa.me/37124502113?text=Hi!%20I%20am%20interested%20in%20the%20{p['name']}" 
-               target="_blank" 
-               style="background:#00ff41; color:black; padding:10px; text-decoration:none; display:block; border-radius:5px; font-weight:bold;">
-               BUY
-            </a>
+            
+            <button onclick="toggleContact({p['id']})" style="width:100%; background:#00ff41; color:black; padding:10px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">BUY</button>
+            
+            <div id="contact-{p['id']}" style="display:none; margin-top:10px; background:#222; border-radius:5px; padding:5px;">
+                <a href="https://wa.me/37124502113" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">💬 WhatsApp</a>
+                <a href="INSERT_FACEBOOK_LINK" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">👤 Facebook</a>
+                <a href="INSERT_DISCORD_LINK" target="_blank" style="color:#00ff41; text-decoration:none; display:block; padding:5px; font-size:12px;">🎮 Discord</a>
+            </div>
         </div>
         """
 
     return f"""
     <html>
-    <head><title>Gustavs' Hardware Shop</title></head>
+    <head>
+        <title>Gustavs' Hardware Shop</title>
+        <script>
+            function toggleContact(id) {{
+                var el = document.getElementById('contact-' + id);
+                if (el.style.display === 'none') {{
+                    el.style.display = 'block';
+                }} else {{
+                    el.style.display = 'none';
+                }}
+            }}
+        </script>
+    </head>
     <body style="background:#0a0a0a; color:white; font-family:sans-serif; text-align:center; padding:20px;">
         <h1 style="color:#00ff41;">GUSTAVS' HARDWARE SHOP</h1>
         <div style="background:#222; width:80%; margin: 20px auto; padding:15px; border-radius:10px;">
             <p>Hustle Progress: €{stats['cash']} / €{stats['goal']}</p>
-            <div style="background:#444; width:100%; height:20px; border-radius:10px; overflow:hidden;">
+            <div style="background:#444; width:100%; height:20px; border-radius:100px; overflow:hidden;">
                 <div style="background:#00ff41; width:{progress}%; height:100%;"></div>
             </div>
         </div>
