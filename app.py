@@ -20,7 +20,7 @@ products = [
         "id": 2, 
         "name": "GA-970A-UD3P", 
         "price": 39, 
-        "img": "https://static.gigabyte.com/StaticFile/Image/Global/99861611681f2157143093282f6e9b46/Product/10041/png/1000"
+        "img": "https://i.postimg.cc/Nf94jWCC/mobo.jpg"
     }
 ]
 
@@ -81,3 +81,4 @@ if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
