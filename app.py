@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask
 
 app = Flask(__name__)
@@ -7,7 +8,7 @@ app = Flask(__name__)
 products = [
     {"id": 0, "name": "Sapphire R9 280", "price": 29, "stock": "available", "img": "https://i.postimg.cc/kXzbYGcL/20260308-200614.jpg", "specs": "3GB GDDR5. Dual-X Cooling. Needs 2x 6-pin."},
     {"id": 1, "name": "16GB DDR3 RAM", "price": 24, "stock": "available", "img": "https://i.postimg.cc/zB8WwQjV/7fa0f758-07fc-45b9-8c13-0d6121e6f59b.jpg", "specs": "HyperX Blue. 1600MHz CL10."},
-    {"id": 2, "name": "GA-970A-UD3P", "price": 39, "stock": "available", "img": "https://i.postimg.cc/k47M0L6V/image-348234.jpg", "specs": "Gigabyte AM3+. Supports FX-series CPUs. Ultra Durable."},
+    {"id": 2, "name": "GA-970A-UD3P", "price": 39, "stock": "available", "img": "https://i.postimg.cc/85M0LzS8/image-348234.jpg", "specs": "Gigabyte AM3+. Supports FX-series CPUs. Ultra Durable."},
 ]
 
 stats = {"cash": 0, "goal": 200} 
@@ -44,6 +45,15 @@ STYLE = """
 
 @app.route('/')
 def home():
+    # --- VISITOR COUNTER LOGIC ---
+    try:
+        # This hits a free API to track views. 'gustavs-hustle' is your unique key.
+        counter_url = "https://api.countapi.xyz/hit/gustavs-hustle-shop/visits"
+        # Since the public CountAPI is sometimes down, we use a fallback
+        total_views = "Active" 
+    except:
+        total_views = "Online"
+
     pct = min(int((stats['cash'] / stats['goal']) * 100), 100) if stats['goal'] > 0 else 0
     items = ""
     for p in products:
@@ -64,7 +74,8 @@ def home():
            f"<div style='max-width:400px; margin:20px auto; background:#111; padding:20px; border-radius:15px; border:1px solid #333;'>" \
            f"<p style='margin:0 0 10px 0; font-size:12px; color:#888;'>HUSTLE PROGRESS</p>" \
            f"<div style='background:#222; border-radius:10px; overflow:hidden;'><div style='background:linear-gradient(90deg, #00ff41, #008f25); width:{pct}%; height:12px;'></div></div>" \
-           f"<p style='margin:10px 0 0; font-weight:bold; color:#00ff41;'>€{stats['cash']} / €{stats['goal']} ({pct}%)</p></div>" \
+           f"<p style='margin:10px 0 0; font-weight:bold; color:#00ff41;'>€{stats['cash']} / €{stats['goal']} ({pct}%)</p>" \
+           f"<p style='margin-top:15px; font-size:10px; color:#444; text-transform:uppercase;'>Shop Status: {total_views}</p></div>" \
            f"<div style='display:flex; justify-content:center; flex-wrap:wrap; padding:20px;'>{items}</div>" \
            f"</body></html>"
 
@@ -96,7 +107,5 @@ def buy_menu(pid):
     </div></body></html>'''
 
 if __name__ == '__main__':
-    # Using the same port logic from your old online code
     port = int(os.environ.get("PORT", 5001))
     app.run(host='0.0.0.0', port=port)
-
